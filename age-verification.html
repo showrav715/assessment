@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Age Verification</title>
+</head>
+
+<body>
+
+    <!-- Age Input -->
+    <div class="container mt-5">
+        <div class="form-group">
+            <label for="ageInput">Enter your age:</label>
+            <input type="number" class="form-control" id="ageInput" placeholder="Enter your age">
+        </div>
+
+        <!-- Card based on Age -->
+        <div class="card mt-4" id="ageCard" style="display: none;">
+            <div class="card-body">
+                <h5 class="card-title" id="ageStatus"></h5>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Script for Age Verification -->
+    <script>
+        document.getElementById('ageInput').addEventListener('input', function () {
+            var age = parseInt(this.value);
+            var ageCard = document.getElementById('ageCard');
+            var ageStatus = document.getElementById('ageStatus');
+
+            if (isNaN(age)) {
+                ageCard.style.display = 'none';
+            } else {
+                ageCard.style.display = 'block';
+                if (age >= 18) {
+                    ageStatus.textContent = 'You are an adult.';
+                    ageCard.classList.remove('bg-danger');
+                    ageCard.classList.add('bg-success', 'text-white');
+                } else {
+                    ageStatus.textContent = 'You are a child.';
+                    ageCard.classList.remove('bg-success');
+                    ageCard.classList.add('bg-danger', 'text-white');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
